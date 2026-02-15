@@ -30,12 +30,15 @@ class ViewSyncBatch extends ViewRecord
                 ->modalHeading('Start Product Sync')
                 ->modalDescription(fn() => "This will sync {$this->record->total_items} products from Sage to Sellsy.")
                 ->action(function () {
-                    // We'll implement the actual sync command in next step
-                    // For now, just show a notification
+                    // Dispatch the sync command in background
+                    \Illuminate\Support\Facades\Artisan::call('sellsy:sync-products', [
+                        'batch_id' => $this->record->id,
+                    ]);
+
                     Notification::make()
-                        ->title('Starting sync...')
-                        ->body('Sync command will be implemented in the next step')
-                        ->info()
+                        ->title('Sync started!')
+                        ->success()
+                        ->body('Products are being synced in the background. This page will auto-refresh.')
                         ->send();
                 }),
 

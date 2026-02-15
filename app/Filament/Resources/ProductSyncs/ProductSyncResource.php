@@ -20,9 +20,9 @@ class ProductSyncResource extends Resource
 {
     protected static ?string $model = ProductSync::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::ArrowPath;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Cube;
 
-    // protected static ?string $navigationLabel = 'Sync Batches';
+    protected static ?string $navigationLabel = 'Product Syncs';
 
     protected static ?int $navigationSort = 2;
 
@@ -55,9 +55,9 @@ class ProductSyncResource extends Resource
     {
         return [
             'index' => ListProductSyncs::route('/'),
-            'create' => CreateProductSync::route('/create'),
+            // 'create' => CreateProductSync::route('/create'),
             'view' => ViewProductSync::route('/{record}'),
-            'edit' => EditProductSync::route('/{record}/edit'),
+            // 'edit' => EditProductSync::route('/{record}/edit'),
         ];
     }
 }
